@@ -1,4 +1,5 @@
 from sklearn.metrics.pairwise import cosine_similarity
+from scipy.spatial import procrustes
 from scipy.sparse.linalg import svds
 import numpy as np
 
@@ -29,10 +30,10 @@ class IntegratedW2V(object):
         for T in range(1, N):
             dA = (corpus.SPPMI[T] - corpus.SPPMI[T - 1])
             U, S, V = self.step(dA, U, S, V)
-            Us, Ss, Vs = np.linalg.svd(S)
-            E = U.dot(Us * np.sqrt(Ss))
-            self.embeddings.append(E)
-            self.symmetry_loss.append(np.linalg.norm(E - V.dot(Vs*np.sqrt(Ss)))/np.linalg.norm(E))
+            u, s, v = np.linalg.svd(S)
+            U_, V_, l = procrustes(U.dot(u*np.sqrt(s)), V.dot(v*np.sqrt(s)))
+            self.embeddings.append(U_)
+            self.symmetry_loss.append(l)
       
     def k_nearest(self, word, k = 5, T = None):
         idx = self.vocab[word]

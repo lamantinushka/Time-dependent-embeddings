@@ -31,6 +31,7 @@ class IntegratedW2V(object):
             dA = (corpus.SPPMI[T] - corpus.SPPMI[T - 1])
             U, S, V = self.step(dA, U, S, V)
             u, s, v = np.linalg.svd(S)
+            v = v.T
             U_, V_, l = procrustes(U.dot(u*np.sqrt(s)), V.dot(v*np.sqrt(s)))
             self.embeddings.append(U_)
             self.symmetry_loss.append(l)

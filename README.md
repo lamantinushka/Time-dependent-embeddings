@@ -1,4 +1,7 @@
 # Time-dependent-embeddings
+based on 
+- Dynamic Word Embeddings for Evolving Semantic Discovery. Yao et al. [https://arxiv.org/pdf/1703.00607.pdf]
+- A projector-splitting integrator for dynamical low-rank approximation. Ch. Lubich and I.V. Oseledets [https://arxiv.org/pdf/1301.1058.pdf]
 ## Data
 train data can be obtained from https://www.dropbox.com/s/nifi5nj1oj0fu2i/data.zip?dl=0
 

@@ -1,12 +1,7 @@
 from scipy.spatial import procrustes
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
-
-
-def static_w2v(SPPMI, rank):
-    U, S, V = svds(SPPMI, k = rank)
-    return U*np.sqrt(S)
-
+from utils import static_w2v
 
 class AlignedW2V(object):
     def __init__(self, rank = 100):
